@@ -1,5 +1,5 @@
-import { text } from "express";
 import { Schema, model } from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new Schema({
     names: {
@@ -43,7 +43,41 @@ const userSchema = new Schema({
     dateCreated: {
         type: Date,
         default: new Date()
-    }
+    },
+    estate: {
+        type: Boolean,
+        default: true
+    },
+    Questionnaire: [
+        {
+            ID: {
+                type: String,
+                required: [true],
+                min: [20],
+                max: [30],
+                trim: true
+            },
+            TitleInglish: {
+                type: String,
+                required: [true],
+                min: [3],
+                max: [40],
+                trim: true
+            }
+        }
+    ]
 })
+
+userSchema.pre("save", async function (next){
+    const user = this;
+    if (!user.isModified("password")) return next();
+    try{
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+        next();
+    }catch(e){
+        console.error(e.name + ': ' + e.message)
+    }
+});
 
 export const User = model("User", userSchema);
