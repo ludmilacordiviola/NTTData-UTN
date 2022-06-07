@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     names: {
         type: String,
         required: [true, "Debe completar el campo nombre"],
@@ -52,14 +52,14 @@ const userSchema = new Schema({
         {
             ID: {
                 type: String,
-                required: [true],
+                required: [true, "Falta el ID"],
                 min: [20],
                 max: [30],
                 trim: true
             },
             TitleInglish: {
                 type: String,
-                required: [true],
+                required: [true, "Falta el Title"],
                 min: [3],
                 max: [40],
                 trim: true
@@ -70,14 +70,17 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function (next){
     const user = this;
+
     if (!user.isModified("password")) return next();
+
     try{
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
         next();
     }catch(e){
-        console.error(e.name + ': ' + e.message)
+        console.error(e.name + ': ' + e.message);
+        throw new Error("Fallo el has de contraseña");
     }
 });
 
-export const User = model("User", userSchema);
+export const User = mongoose.model("User", userSchema);

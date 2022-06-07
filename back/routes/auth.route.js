@@ -6,7 +6,7 @@ import { validationResultExpress } from "../middlewares/validationResultExpress.
 const router = Router();
 
 router.post("/register", [
-    body("name", "Complete el nombre")
+    body("names", "Complete el nombre")
         .exists()
         .matches(/^[A-Za-z]+$/)
         .trim()
