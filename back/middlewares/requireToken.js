@@ -1,18 +1,20 @@
 import jwt from "jsonwebtoken";
+import { tokenVerificationErrors } from "../utils/tokenManager";
 
 export const requireToken = (req, res, next) => {
     try {
         let token = req.headers?.authorization;
-        if(!token) return res.status(401).json({ error: "Fallo del token de la aplicacion" });
+        if(!token) return res.status(401).json({ error: "Fallo el token de la aplicacion" });
         
         token= token.split(" ")[1];
        
-        const { uid } = jwt.verify(token, process.env.JWT_SECRET);
-        req.uid = uid;
+        const { id } = jwt.verify(token, process.env.JWT_SECRET);
+        req.id = id;
 
         next();
     } catch (e) {
-        console.error(e.name + ': ' + e.message);
-        throw new Error("Fallo de la aplicacion");
+        return res
+            .status(401)
+            .json({ error: tokenVerificationErrors[e.message] });
     }
 }
