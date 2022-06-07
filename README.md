@@ -11,8 +11,11 @@
 ### ENV
 
 **URI_MONGO** Esta es la URI de conexion con mongo BD
+
 **JWT_SECRET** Contraseña para generar el jsonwebtoken
+
 **JWT_REFRESH** Contraseña para refrescar el jsonwebtoken
+
 **MODO=developer**
 
 ### register
