@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+import bcryptjs from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
     names: {
@@ -74,13 +74,18 @@ userSchema.pre("save", async function (next){
     if (!user.isModified("password")) return next();
 
     try{
-        const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        user.password = await bcryptjs.hash(user.password, salt);
         next();
     }catch(e){
         console.error(e.name + ': ' + e.message);
         throw new Error("Fallo el has de contraseña");
     }
 });
+
+userSchema.methods.comparePassword = async function (canditatePassword) {
+    console.log(canditatePassword);
+    return await bcryptjs.compare(canditatePassword, this.password);
+};
 
 export const User = mongoose.model("User", userSchema);
