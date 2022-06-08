@@ -41,6 +41,11 @@ export const login = async (req, res) =>{
     }
 }
 
+export const logout = (req, res) => {
+    res.clearCookie("refreshToken");
+    res.json({ ok: true });
+};
+
 export const refreshToken = (req, res) => {
     try {
         const refreshTokenCookies = req.cookies.refreshToken;
