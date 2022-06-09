@@ -22,7 +22,7 @@
 
 >Método post, para registrar un nuevo usuario, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
 
-#### Ruta post
+#### POST
 
 ```
 http://localhost:5000/api/v1/auth/register
@@ -44,6 +44,8 @@ http://localhost:5000/api/v1/auth/register
 
 >Método post, para iniciar sesion, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
 
+#### POST
+
 ```
 http://localhost:5000/api/v1/auth/login
 ```
@@ -56,3 +58,5 @@ http://localhost:5000/api/v1/auth/login
     "password": "Pa_sSw0rdnE_W"
 }
 ```
+
+
