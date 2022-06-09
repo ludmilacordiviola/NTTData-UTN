@@ -10,17 +10,17 @@
 
 ## **ENV**
 
-**URI_MONGO** Esta es la URI de conexion con mongo BD
+>**URI_MONGO** Esta es la URI de conexion con mongo BD
 
-**JWT_SECRET** Contraseña para generar el jsonwebtoken
+>**JWT_SECRET** Contraseña para generar el jsonwebtoken
 
-**JWT_REFRESH** Contraseña para refrescar el jsonwebtoken
+>**JWT_REFRESH** Contraseña para refrescar el jsonwebtoken
 
-**MODO=developer**
+>**MODO=developer**
 
 ## **REGISTER**
 
-Método post, para registrar un nuevo usuario, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
+>Método post, para registrar un nuevo usuario, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
 
 #### Ruta post
 
@@ -42,7 +42,7 @@ http://localhost:5000/api/v1/auth/register
 
 ## **LOGIN**
 
-Método post, para iniciar sesion, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
+>Método post, para iniciar sesion, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
 
 ```
 http://localhost:5000/api/v1/auth/login
