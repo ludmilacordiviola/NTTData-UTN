@@ -8,7 +8,7 @@
 
 - [Ludmila Estefania Cordiviola](https://www.linkedin.com/in/ludmila-cordiviola-41360316a)
 
-### ENV
+## **ENV**
 
 **URI_MONGO** Esta es la URI de conexion con mongo BD
 
@@ -18,7 +18,7 @@
 
 **MODO=developer**
 
-### REGISTER
+## **REGISTER**
 
 Método post, para registrar un nuevo usuario, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
 
@@ -40,7 +40,7 @@ http://localhost:5000/api/v1/auth/register
 }
 ```
 
-### LOGIN
+## **LOGIN**
 
 Método post, para iniciar sesion, con una estrucutra JSON, el cual te retorna un token con el ID del usuario con jsonwebtoken, la cual se regenera cada 15'
 
