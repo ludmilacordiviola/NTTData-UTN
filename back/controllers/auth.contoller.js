@@ -28,7 +28,7 @@ export const login = async (req, res) =>{
         const user = await User.findOne({ email });
             if (!user) return res.status(400).json({ error: "Su email no se encuentra registrado" });
         
-        const respondPassword = await User.comparePassword(password);
+        const respondPassword = await user.comparePassword(password);
             if (!respondPassword) return res.status(400).json({ error: "Email o Contraseña incorrectos, intente nuevamente" });
             
         const {token, expiresIn}= generateToken(user.id, res);
