@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    estate: {
+    status: {
         type: Boolean,
         default: true
     },
