@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const syllabusSchema = new mongoose.Schema({
-    themeSpanish: {
+    titleSpanish: {
         type: String,
         required: [true, "Debe completar el tema en español"],
         min: [3, "El tema en español debe tener mas de 3 caracteres"],
         max: [50, "Su tema en español supera el maximo de caracteres permitidos"],
         trim: true
     },
-    themeEnglish: {
+    titleEnglish: {
         type: String,
         required: [true, "Debe completar el tema en ingles"],
         min: [3, "El tema en ingles debe tener mas de 3 caracteres"],
@@ -55,7 +55,6 @@ const syllabusSchema = new mongoose.Schema({
             }
         }
     ]
-
 })
 
 export const Syllabus = mongoose.model("Syllabus", syllabusSchema);

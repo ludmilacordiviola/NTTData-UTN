@@ -48,20 +48,13 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    Questionnaire: [
+    syllabus: [
         {
             ID: {
                 type: String,
                 required: [true, "Falta el ID"],
                 min: [20],
                 max: [30],
-                trim: true
-            },
-            TitleInglish: {
-                type: String,
-                required: [true, "Falta el Title"],
-                min: [3],
-                max: [40],
                 trim: true
             }
         }
