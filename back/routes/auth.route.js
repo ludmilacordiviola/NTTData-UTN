@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { login, register, refreshToken, logout } from "../controllers/auth.contoller.js";
+import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
 import { validationResultExpress } from "../middlewares/validationResultExpress.js";
 import { bodyTextValidator, bodyBirthDateValidator, bodyEmailValidator, bodyPasswordValidator } from "../middlewares/validatorUser.js";
 
@@ -24,6 +25,6 @@ router.post("/login",
 
 router.get("/logout", logout);
 
-router.post("/refresh", refreshToken);
+router.post("/refresh", requireRefreshToken, refreshToken);
 
 export default router;

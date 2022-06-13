@@ -1,6 +1,5 @@
 import { User } from "../models/User.js";
-import { generateRefreshToken, generateToken, tokenVerificationErrors } from "../utils/tokenManager.js";
-import jwt from "jsonwebtoken";
+import { generateRefreshToken, generateToken } from "../utils/tokenManager.js";
 
 export const register = async (req, res) => {
     try {
@@ -48,16 +47,9 @@ export const logout = (req, res) => {
 
 export const refreshToken = (req, res) => {
     try {
-        const refreshTokenCookies = req.cookies.refreshToken;
-        if(!refreshTokenCookies) return res.status(500).json({ error: "Falla en la regeneracion del token" });
-        
-        const { id } = jwt.verify(refreshTokenCookies, process.env.JWT_REFRESH);
-        const {token, expiresIn}= generateToken(id, res);
- 
+        const {token, expiresIn}= generateToken(req.id, res);
         return res.status(201).json({token, expiresIn});
     } catch (e) {
-        return res
-            .status(401)
-            .json({ error: tokenVerificationErrors[e.message] });
+        return res.status(500).json({ error: "Falla de la aplicacion" });
     }
 };

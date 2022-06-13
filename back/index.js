@@ -14,5 +14,12 @@ app.use("/api/v1/auth", authRoutes);
 
 app.use("/api/v1/syllabus", syllabus);
 
+app.use("*", (req, res)=>{
+    return res.status(201).json({
+        "ok": "convert readme a html con javascript"
+    });
+});
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log("http://localhost:" + PORT + "/api/v1/auth"));
