@@ -41,24 +41,20 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Debe completar el campo contraseña"]
     },
-    //creacion?
     dateCreated: {
         type: Date,
         default: new Date()
     },
-    //estado?
     status: {
         type: Boolean,
         default: true
     },
-    //usuario dentro del array de temario?
     syllabus: [
         {
-            ID: {
-                type: String,
-                required: [true, "Falta el ID"],
-                min: [20],
-                max: [30],
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Syllabus",
+                required: false,
                 trim: true
             }
         }

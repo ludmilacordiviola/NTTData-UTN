@@ -47,6 +47,16 @@ export const login = async (req, res) =>{
     }
 }
 
+export const dataUser = async (req, res) =>{
+    try {
+        const { id } = req.params;
+        const response = await User.findById({"_id": id, "status": true}, {"names":1, "surname":1, "birthDate": 1, "syllabus": 1});
+        return res.status(201).json(response);
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en el register de Data User" });
+    }
+}
+
 export const infoUser = async (req, res) => {
     try {
         const user = await User.findById(req.uid).lean();
