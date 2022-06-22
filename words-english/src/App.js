@@ -1,10 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+      <h1>
+        Aca el menu
+      </h1>
+      <Outlet />
+      <h2>
+        Aca el Footer
+      </h2>
+    </>
   );
 }
 
