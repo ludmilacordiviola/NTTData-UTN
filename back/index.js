@@ -9,14 +9,16 @@ import syllabus from "./routes/syllabus.route.js";
 import redirectRouter from "./routes/redirect.route.js";
 
 const app = express();
-const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2];
+//estos origenes deberian tener el url del puerto ej: http://127.0.0.1:5000 para autorizar los cors
+const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2];//const para comparar los dominios que vamos a autorizar
+//estos origenes luego seran nuestro front VUE o REACT o ambos
 
 app.use(
     cors({
-        origin: function (origin, callback) {
+        origin: function (origin, callback) { //origin desde donde se hace la solicitud, el dominio
             console.log("😲😲😲 =>", origin);
             if (!origin || whiteList.includes(origin)) {
-                return callback(null, origin);
+                return callback(null, origin); //los call por sta<ndar pasan primero los errores, null
             }
             return callback(
                 "Error de CORS origin: " + origin + " No autorizado!"

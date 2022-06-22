@@ -12,7 +12,8 @@ export const getLinks = async (req, res) => {
         return res.status(500).json({ error: "error de servidor" });
     }
 };
-//obtener el nanolink
+
+//la vista podra hacer el redireccionamiento
 export const getLink = async (req, res) => {
     try {
         const { nanoLink } = req.params;
@@ -30,26 +31,6 @@ export const getLink = async (req, res) => {
     }
 };
 
-// Para un CRUD tradicional
-export const getLinkCRUD = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const link = await Link.findById(id);
-
-        if (!link) return res.status(404).json({ error: "No existe el link" });
-
-        if (!link.uid.equals(req.uid))
-            return res.status(401).json({ error: "No le pertenece ese id 🤡" });
-
-        return res.json({ link });
-    } catch (error) {
-        console.log(error);
-        if (error.kind === "ObjectId") {
-            return res.status(403).json({ error: "Formato id incorrecto" });
-        }
-        return res.status(500).json({ error: "error de servidor" });
-    }
-};
 
 //crear un link
 export const createLink = async (req, res) => {
@@ -111,6 +92,27 @@ export const updateLink = async (req, res) => {
         // actualizar: https://mongoosejs.com/docs/api.html#document_Document-save
         link.longLink = longLink;
         await link.save();
+
+        return res.json({ link });
+    } catch (error) {
+        console.log(error);
+        if (error.kind === "ObjectId") {
+            return res.status(403).json({ error: "Formato id incorrecto" });
+        }
+        return res.status(500).json({ error: "error de servidor" });
+    }
+};
+
+// Para un CRUD tradicional
+export const getLinkCRUD = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const link = await Link.findById(id);
+
+        if (!link) return res.status(404).json({ error: "No existe el link" });
+
+        if (!link.uid.equals(req.uid))
+            return res.status(401).json({ error: "No le pertenece ese id 🤡" });
 
         return res.json({ link });
     } catch (error) {

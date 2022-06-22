@@ -9,13 +9,7 @@ router.get("/", requireToken, getLinks);
 router.get("/:nanoLink", getLink);
 router.post("/", requireToken, bodyLinkValidator, createLink);
 router.delete("/:id", requireToken, paramLinkValidator, removeLink);
-router.patch(
-    "/:id",
-    requireToken,
-    paramLinkValidator,
-    bodyLinkValidator,
-    updateLink
-);
+router.patch("/:id",requireToken, paramLinkValidator, bodyLinkValidator, updateLink);
 
 
 export default router;
