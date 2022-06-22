@@ -1,19 +1,9 @@
-/*
-Aqui deberian ir los controllers de usuario como registro, login, refresh y logout //ESTAN EN AUTH COMPLETOS!!
-*/
-
 import { Syllabus } from "../models/Syllabus.js";
 
 export const register = async (req, res) => {
     try {
-
-        const {title, description, questionnarie} = req.body;
-
-        syllabus = new Syllabus({title, description, questionnarie});
-/*         console.log(questionnarie);
- */
+        const syllabus = new Syllabus(req.body);
             await syllabus.save();
-        
 
         return res.status(201).json({ok: true});
 
