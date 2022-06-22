@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcryptjs from "bcryptjs";
 
+//revisar schema
 const userSchema = new mongoose.Schema({
     names: {
         type: String,
@@ -40,14 +41,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Debe completar el campo contraseña"]
     },
+    //creacion?
     dateCreated: {
         type: Date,
         default: new Date()
     },
+    //estado?
     status: {
         type: Boolean,
         default: true
     },
+    //usuario dentro del array de temario?
     syllabus: [
         {
             ID: {
@@ -72,7 +76,7 @@ userSchema.pre("save", async function (next){
         next();
     }catch(e){
         console.error(e.name + ': ' + e.message);
-        throw new Error("Fallo el has de contraseña");
+        throw new Error("Fallo el hash de contraseña");
     }
 });
 

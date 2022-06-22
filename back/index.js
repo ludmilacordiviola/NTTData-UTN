@@ -1,19 +1,39 @@
 import "dotenv/config";
 import "./database/connection.js";
-import authRoutes from "./routes/auth.route.js";
-import syllabus from "./routes/syllabus.route.js"
-import express from "express";
 import cookieParser from "cookie-parser";
+import express from "express";
+import cors from "cors";
+import authRouter from "./routes/auth.route.js";
+import linkRouter from "./routes/link.route.js";
+import syllabus from "./routes/syllabus.route.js";
+import redirectRouter from "./routes/redirect.route.js";
 
 const app = express();
+const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2];
+
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            console.log("😲😲😲 =>", origin);
+            if (!origin || whiteList.includes(origin)) {
+                return callback(null, origin);
+            }
+            return callback(
+                "Error de CORS origin: " + origin + " No autorizado!"
+            );
+        },
+    })
+);
 
 app.use(express.json());
 app.use(cookieParser());
-
-app.use("/api/v1/auth", authRoutes);
-
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/links", linkRouter);
 app.use("/api/v1/syllabus", syllabus);
+// ejemplo back redirect (opcional)
+app.use("/", redirectRouter);
 
+//devuelve siempre la misma respuesta??
 app.use("*", (req, res)=>{
     return res.status(201).json({
         "ok": "convert readme a html con javascript"
