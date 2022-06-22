@@ -10,7 +10,6 @@ export const register = async (req, res) => {
 
         user = new User({names, surname, birthDate, email, password});
             await user.save();
-
         //generar token JWT
         const {token, expiresIn}= generateToken(user.id);
         generateRefreshToken(user.id, res)
@@ -18,7 +17,6 @@ export const register = async (req, res) => {
         return res.status(201).json({token, expiresIn});
 
     } catch (error) {
-        console.log(error);
         //alternativa por defecto mongoose
         if (error.code === 11000) {
             return res.status(400).json({ error: "Ya existe este usuario" });
@@ -45,7 +43,6 @@ export const login = async (req, res) =>{
         
         return res.status(201).json({token, expiresIn});
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ error: "Falla de la aplicacion en el login" });
     }
 }
@@ -65,7 +62,6 @@ export const refreshToken = (req, res) => {
         const {token, expiresIn} = generateToken(req.id);
         return res.status(201).json({token, expiresIn});
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ error: "Falla de la aplicacion en el refres token" });
     }
 };
