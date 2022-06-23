@@ -49,16 +49,12 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    syllabus: [
-        {
-            id: {
+    syllabus:[{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Syllabus",
                 required: false,
                 trim: true
-            }
-        }
-    ]
+    }]
 })
 
 userSchema.pre("save", async function (next){

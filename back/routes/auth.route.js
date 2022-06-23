@@ -1,7 +1,15 @@
 import { Router } from "express";
-import { login, register, refreshToken, logout, dataUser, infoUser} from "../controllers/auth.contoller.js";
+import { 
+    login, 
+    register, 
+    refreshToken, 
+    logout, 
+    getdataUser, 
+    setdataUser,
+    setUserSyllabus
+} from "../controllers/auth.contoller.js";
 import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
-import { requireToken } from "../middlewares/requireToken.js";
+import { requireToken, requireBodyToken } from "../middlewares/requireToken.js";
 import { bodyRegisterValidator, bodyDataUserValidator } from "../middlewares/validatorUser.js";
 
 const router = Router();
@@ -17,12 +25,14 @@ router.post("/login",
             login       
 );
 
-//router.get("/protected", requireToken, infoUser);
+router.get("/dataUser",requireToken, getdataUser);
 
-router.get("/logout", logout);
+router.patch("/dataUser", requireBodyToken, bodyDataUserValidator, setdataUser);
 
-router.get("/dataUser/:id", dataUser);
+router.patch("/userSallybus", setUserSyllabus);
 
 router.post("/refresh", requireRefreshToken, refreshToken);
+
+router.get("/logout", logout);
 
 export default router;

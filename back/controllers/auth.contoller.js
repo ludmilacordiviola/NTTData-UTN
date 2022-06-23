@@ -1,4 +1,5 @@
 import { User } from "../models/User.js";
+import { Syllabus } from "../models/Syllabus.js";
 import { generateRefreshToken, generateToken } from "../utils/tokenManager.js";
 
 export const register = async (req, res) => {
@@ -47,25 +48,43 @@ export const login = async (req, res) =>{
     }
 }
 
-export const dataUser = async (req, res) =>{
+export const getdataUser = async (req, res) =>{
     try {
-        const { id } = req.params;
-        const response = await User.findById({"_id": id, "status": true}, {"names":1, "surname":1, "birthDate": 1, "syllabus": 1});
-        return res.status(201).json(response);
+        const user = await User.findById({"_id": req.id, "status": true}, {"names":1, "surname":1, "birthDate": 1, "syllabus": 1});
+        return res.status(201).json(user);
     } catch (error) {
-        return res.status(500).json({ error: "Falla la aplicacion en el register de Data User" });
+        return res.status(500).json({ error: "Falla la aplicacion en el register de get Data User" });
     }
 }
 
-export const infoUser = async (req, res) => {
+export const setdataUser = async (req, res, next) =>{
     try {
-        const user = await User.findById(req.uid).lean();
-        return res.json({ email: user.email, id: user.id });
+        const { names,  surname, birthDate} = req.body;
+        console.log(req.id)
+        const user = await User.updateOne({_id: req.id}, 
+            {names: names, surname: surname, birthDate: birthDate});
+        return res.status(201).json({ numberModified : user.modifiedCount});
     } catch (error) {
-        return res.status(500).json({ error: "error de server" });
+        return res.status(500).json({ error: "Falla la aplicacion en set Data User" });
     }
-};
+}
 
+export const setUserSyllabus = async (req, res) =>{
+    try {
+        const { id, syllabus} = req.body;
+
+        const sallybus = await Syllabus.findOne({_id: syllabus})
+        if (!sallybus) 
+            return res.status(400).json({ error: "Su temario no se encuentra registrado" });
+
+        const user = await User.updateOne({_id: id}, 
+                {$push: { 'syllabus': syllabus }});
+
+        return res.status(201).json({ numberModified : user.modifiedCount});
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en Set User Sallybus" });
+    }
+}
 
 export const refreshToken = (req, res) => {
     try {
