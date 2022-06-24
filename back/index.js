@@ -16,7 +16,6 @@ const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2];//const para compar
 app.use(
     cors({
         origin: function (origin, callback) { //origin desde donde se hace la solicitud, el dominio
-            console.log("😲😲😲 =>", origin);
             if (!origin || whiteList.includes(origin)) {
                 return callback(null, origin); //los call por sta<ndar pasan primero los errores, null
             }
@@ -35,14 +34,11 @@ app.use("/api/v1/syllabus", syllabus);
 // ejemplo back redirect (opcional)
 app.use("/", redirectRouter);
 
-//devuelve siempre la misma respuesta??
 app.use("*", (req, res)=>{
     return res.status(201).json({
         "ok": "convert readme a html con javascript"
     });
 });
-
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log("http://localhost:" + PORT + "/api/v1/auth"));

@@ -57,7 +57,7 @@ export const removeLink = async (req, res) => {
         if (!link) return res.status(404).json({ error: "No existe el link" });
 
         if (!link.uid.equals(req.uid))
-            return res.status(401).json({ error: "No le pertenece ese id 🤡" });
+            return res.status(401).json({ error: "No le pertenece ese id" });
 
         await link.remove();
 
@@ -87,7 +87,7 @@ export const updateLink = async (req, res) => {
         if (!link) return res.status(404).json({ error: "No existe el link" });
 
         if (!link.uid.equals(req.uid))
-            return res.status(401).json({ error: "No le pertenece ese id 🤡" });
+            return res.status(401).json({ error: "No le pertenece ese id" });
 
         // actualizar: https://mongoosejs.com/docs/api.html#document_Document-save
         link.longLink = longLink;
@@ -112,7 +112,7 @@ export const getLinkCRUD = async (req, res) => {
         if (!link) return res.status(404).json({ error: "No existe el link" });
 
         if (!link.uid.equals(req.uid))
-            return res.status(401).json({ error: "No le pertenece ese id 🤡" });
+            return res.status(401).json({ error: "No le pertenece ese id" });
 
         return res.json({ link });
     } catch (error) {
