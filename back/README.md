@@ -209,6 +209,7 @@ http://localhost:5000/api/v1/auth/userSallybus
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjM3ZmI1NzYwZWU4OGZhMGZmYjY0MiIsImlhdCI6MTY1NjAxNzk5MiwiZXhwIjoxNjU2MDE4ODkyfQ.u16_lzIKAPO5_6hWrwKyVmUMSQTF-4lAqFezKub_VPo",
     "syllabus": "62b36bd92995b7a083a74104"
 }
+```
 
 ### **SYLLABUS**
 
