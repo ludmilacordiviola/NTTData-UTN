@@ -2,15 +2,6 @@ import { body, param } from "express-validator";
 import { validationResultExpress } from "../middlewares/validationResultExpress.js";
 import axios from "axios";
 
-export const paramLinkValidator = [
-    param("id", "Formato no válido (expressValidator)")
-        .trim()
-        .notEmpty()
-        .escape(),
-    validationResultExpress,
-]; 
-
-
 //validacion REGISTER
 //aqui deberian ir todos los valores del registro? nombre, apellido, email y contraseña? 
 export const bodyDataUserValidator = [
@@ -31,19 +22,57 @@ export const bodyDataUserValidator = [
         //.isBefore(new Date()), hacer validacion custom
         validationResultExpress
 ];
-export const bodyRegisterValidator = [
+
+export const bodyEmailValidator = [
     body("email", "Email o contraseña incorrectos, por favor intente de nuevo")
         .exists()
         .trim()
         .isLength({min:8, max: 320})
         .isEmail()
         .normalizeEmail(),
+    validationResultExpress
+]
+
+export const bodyPasswordValidator = [
     body("password", "Contraseña o email incorrectos, por favor intente de nuevo")
         .trim()
         .isLength({ min: 6 })
         .isStrongPassword(),
     validationResultExpress
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //validaciones LINK
@@ -65,6 +94,14 @@ export const bodyLinkValidator = [
         }),
     validationResultExpress
 ];
+
+export const paramLinkValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+]; 
 
 
 

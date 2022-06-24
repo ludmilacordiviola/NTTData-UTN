@@ -48,6 +48,34 @@ export const login = async (req, res) =>{
     }
 }
 
+export const setUserEmail = async (req, res) => {
+    try {
+        const {email} = req.body;
+        let user = await User.findOne({ email });
+            if (user) return res.status(400).json({ error: "Su email ya se encuentra registrado" });
+        
+        user = await User.updateOne({_id: req.id}, 
+                {email});
+        console.log(email)
+        return res.status(201).json({ numberModified : user.modifiedCount});
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en user email" });
+    }
+};
+
+export const userPassword = async (req, res) => {
+    try {
+        const {password} = req.body;
+
+        const user = await User.findOneAndUpdate({_id: req.id}, 
+                {password});
+
+        return res.status(201).json({ numberModified : user.modifiedCount});
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en user password" });
+    }
+};
+
 export const getdataUser = async (req, res) =>{
     try {
         const user = await User.findById({"_id": req.id, "status": true}, {"names":1, "surname":1, "birthDate": 1, "syllabus": 1});
@@ -57,12 +85,30 @@ export const getdataUser = async (req, res) =>{
     }
 }
 
+export const getUserSyllabus = async (req, res) =>{
+    try {
+        const user = await User.findById({"_id": req.id, "status": true}, {"syllabus": 1});
+        return res.status(201).json(user);
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en el register de get User Sallybus" });
+    }
+}
+
+export const getUserEmail = async (req, res) =>{
+    try {
+        const user = await User.findById({"_id": req.id, "status": true}, {"email": 1});
+        return res.status(201).json(user);
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en el register de get user email" });
+    }
+}
+
 export const setdataUser = async (req, res, next) =>{
     try {
         const { names,  surname, birthDate} = req.body;
         console.log(req.id)
         const user = await User.updateOne({_id: req.id}, 
-            {names: names, surname: surname, birthDate: birthDate});
+            {names, surname, birthDate});
         return res.status(201).json({ numberModified : user.modifiedCount});
     } catch (error) {
         return res.status(500).json({ error: "Falla la aplicacion en set Data User" });
@@ -71,13 +117,13 @@ export const setdataUser = async (req, res, next) =>{
 
 export const setUserSyllabus = async (req, res) =>{
     try {
-        const { id, syllabus} = req.body;
+        const { syllabus} = req.body;
 
         const sallybus = await Syllabus.findOne({_id: syllabus})
         if (!sallybus) 
             return res.status(400).json({ error: "Su temario no se encuentra registrado" });
 
-        const user = await User.updateOne({_id: id}, 
+        const user = await User.updateOne({_id: req.id}, 
                 {$push: { 'syllabus': syllabus }});
 
         return res.status(201).json({ numberModified : user.modifiedCount});

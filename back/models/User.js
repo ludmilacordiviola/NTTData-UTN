@@ -72,6 +72,20 @@ userSchema.pre("save", async function (next){
     }
 });
 
+userSchema.pre("findOneAndUpdate", async function (next){
+    const user = this.getUpdate();
+
+    try{
+        const salt = await bcryptjs.genSalt(10);
+        user.password = await bcryptjs.hash(user.password, salt);
+        console.log(22)
+        next();
+    }catch(e){
+        console.error(e.name + ': ' + e.message);
+        throw new Error("Fallo el hash de contraseña");
+    }
+});
+
 userSchema.methods.comparePassword = async function (canditatePassword) {
     return await bcryptjs.compare(canditatePassword, this.password);
 };
