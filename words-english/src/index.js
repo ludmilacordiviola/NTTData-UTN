@@ -1,21 +1,19 @@
-import React from 'react';
+import React from 'react'
 import ReactDOM from 'react-dom/client';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import App from './App';
-import Login from './routes/Login';
+//import App from './App';
+import SignIn from './component/SignIn';
+import SignUp from './component/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/login' element={<Login/>} />
-        <Route path='/' element={<App/>} />
-      </Routes>
-    </BrowserRouter>
+    <SignIn></SignIn>
+    <SignUp></SignUp>
   </React.StrictMode>
 );
+
+/*
+<React.StrictMode>
+    <App />
+</React.StrictMode>
+*/
