@@ -72,7 +72,14 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              id="email"
+              label="Birthday"
+              type="date"
+              defaultValue="2017-05-24"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -85,7 +92,6 @@ export default function SignUp() {
               name="password"
               label="Password"
               type="password"
-              id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
