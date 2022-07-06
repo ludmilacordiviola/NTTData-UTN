@@ -1,9 +1,13 @@
-import SignUp from "../component/SignUp";
+import SignIn from '../component/SignIn';
+import SignUp from '../component/SignUp';
 
 export default function Login() {
 
     return (
-        <SignUp/>
+        <>
+            <SignIn></SignIn>
+            <SignUp></SignUp>
+        </>
     )
 
 }
