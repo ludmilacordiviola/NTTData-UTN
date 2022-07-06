@@ -4,10 +4,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import { Box, Grid } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
+import { Box } from "@mui/system";
 
-export default function ModalListening() {
+export default function ModalWrite() {
   return (
     <Dialog open>
       <Box sx={{ p: 2 }}>
@@ -33,12 +35,18 @@ export default function ModalListening() {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            gap={2}
+            gap={4}
           >
-            <Button variant="contained">Option 1</Button>
-            <Button variant="contained">Option 2</Button>
-            <Button variant="contained">Option 3</Button>
-            <Button variant="contained">Option 4</Button>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Text"
+              type="Text"
+              variant="standard"
+            />
+            <Button variant="contained" endIcon={<SendIcon />}>
+              Send
+            </Button>
           </Grid>
         </DialogActions>
       </Box>

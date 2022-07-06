@@ -4,10 +4,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Box, Grid } from "@mui/material";
 
-export default function ModalListening() {
+export default function ModalSelect() {
   return (
     <Dialog open>
       <Box sx={{ p: 2 }}>
@@ -21,9 +20,7 @@ export default function ModalListening() {
               alignItems="center"
               gap={2}
             >
-              <Button variant="contained" startIcon={<VolumeUpIcon />}>
-                Play sound
-              </Button>
+              Title selected
             </Grid>
           </DialogContentText>
         </DialogContent>

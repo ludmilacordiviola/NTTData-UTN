@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client';
-import ModalListening from './component/ModalListening';
+import ModalWrite from './component/ModalWrite';
 //import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ModalListening></ModalListening>
+    <ModalWrite></ModalWrite>
   </React.StrictMode>
 );
 
