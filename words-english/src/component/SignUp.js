@@ -14,7 +14,7 @@ export default function SignUp() {
     <Grid container component="main" sx={{ height: "100vh" }}>
       <CssBaseline />
       <Grid
-        item
+        item={true}
         xs={false}
         sm={4}
         md={6}
@@ -29,7 +29,7 @@ export default function SignUp() {
           backgroundPosition: "center",
         }}
       />
-      <Grid item xs={12} sm={8} md={6} square>
+      <Grid item xs={12} sm={8} md={6}>
         <Box
           sx={{
             my: 8,
