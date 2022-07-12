@@ -8,8 +8,19 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+import { useState } from "react";
 
 export default function SignUp() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [birthday, setBirthday] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onClickSignUp = () => {
+    alert(birthday);
+  };
+
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
       <CssBaseline />
@@ -46,6 +57,8 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   margin="normal"
                   autoComplete="given-name"
                   name="firstName"
@@ -58,6 +71,8 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   margin="normal"
                   required
                   fullWidth
@@ -69,14 +84,18 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <TextField
+              value={birthday}
+              onChange={(e) => setBirthday(e.target.value)}
               margin="normal"
               required
               fullWidth
               label="Birthday"
               type="date"
-              defaultValue="2017-05-24"
+              defaultValue="2022-05-24"
             />
             <TextField
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               margin="normal"
               required
               fullWidth
@@ -86,6 +105,8 @@ export default function SignUp() {
               autoFocus
             />
             <TextField
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               margin="normal"
               required
               fullWidth
@@ -100,6 +121,7 @@ export default function SignUp() {
             />
             <Button
               type="submit"
+              onClick={onClickSignUp}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

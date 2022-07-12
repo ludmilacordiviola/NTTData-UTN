@@ -4,8 +4,17 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import SendIcon from '@mui/icons-material/Send';
+import { useState } from "react";
 
 export default function SignIn() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onClickSignIn = () => {
+    alert(email, password)
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="inherit">
@@ -23,6 +32,8 @@ export default function SignIn() {
             >
               <Grid item xs={4}>
                 <TextField
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   label="Email"
                   type="email"
                   size="small"
@@ -30,13 +41,15 @@ export default function SignIn() {
               </Grid>
               <Grid item xs={4}>
                 <TextField
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   label="Password"
                   type="password"
                   size="small"
                 />
               </Grid>
               <Grid item xs={4}>
-                <Button type="submit" variant="contained" color="success" startIcon={<SendIcon />}>
+                <Button onClick={onClickSignIn} type="submit" variant="contained" color="success" startIcon={<SendIcon />}>
                   Login
                 </Button>
               </Grid>
