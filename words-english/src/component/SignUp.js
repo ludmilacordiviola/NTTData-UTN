@@ -4,21 +4,26 @@ import {
   Box,
   TextField,
   Button,
-  Typography,
-  FormControlLabel,
-  Checkbox,
+  Typography
 } from "@mui/material";
 import { useState } from "react";
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthday, setBirthday] = useState();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+    birthday: "2022-05-24",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
 
   const onClickSignUp = () => {
-    alert(birthday);
+    alert(userInfo.firstName);
   };
 
   return (
@@ -57,8 +62,8 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={userInfo.firstName}
+                  onChange={handleChange}
                   margin="normal"
                   autoComplete="given-name"
                   name="firstName"
@@ -71,8 +76,8 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={userInfo.lastName}
+                  onChange={handleChange}
                   margin="normal"
                   required
                   fullWidth
@@ -84,8 +89,8 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <TextField
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}
+              value={userInfo.birthday}
+              onChange={handleChange}
               margin="normal"
               required
               fullWidth
@@ -94,8 +99,8 @@ export default function SignUp() {
               defaultValue="2022-05-24"
             />
             <TextField
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={userInfo.email}
+              onChange={handleChange}
               margin="normal"
               required
               fullWidth
@@ -105,8 +110,8 @@ export default function SignUp() {
               autoFocus
             />
             <TextField
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={userInfo.password}
+              onChange={handleChange}
               margin="normal"
               required
               fullWidth
@@ -114,10 +119,6 @@ export default function SignUp() {
               label="Password"
               type="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
