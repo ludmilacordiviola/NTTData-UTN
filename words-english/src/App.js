@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("toke");
     token ? navigate("/") : navigate("/login");
+    console.log(22)
   }, []);
 
   return (
