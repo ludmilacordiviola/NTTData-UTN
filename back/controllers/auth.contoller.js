@@ -76,7 +76,7 @@ export const userPassword = async (req, res) => {
     }
 };
 
-export const getdataUser = async (req, res) =>{
+export const getDataUser = async (req, res) =>{
     try {
         const user = await User.findById({"_id": req.id, "status": true}, {"names":1, "surname":1, "birthDate": 1, "syllabus": 1});
         return res.status(201).json(user);
@@ -103,7 +103,7 @@ export const getUserEmail = async (req, res) =>{
     }
 }
 
-export const setdataUser = async (req, res, next) =>{
+export const setDataUser = async (req, res, next) =>{
     try {
         const { names,  surname, birthDate} = req.body;
         console.log(req.id)

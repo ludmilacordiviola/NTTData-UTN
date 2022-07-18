@@ -4,8 +4,8 @@ import {
     register, 
     refreshToken, 
     logout, 
-    getdataUser, 
-    setdataUser,
+    getDataUser, 
+    setDataUser,
     setUserSyllabus,
     getUserSyllabus,
     getUserEmail,
@@ -37,7 +37,7 @@ router.post("/login",
 
 router.post("/refresh", requireRefreshToken, refreshToken);
 
-router.get("/dataUser",requireToken, getdataUser);
+router.get("/dataUser",requireToken, getDataUser);
 
 router.get("/userSallybus", requireBodyToken, getUserSyllabus);
 
@@ -49,7 +49,7 @@ router.patch("/userEmail", requireRefreshToken, bodyEmailValidator, setUserEmail
 
 router.patch("/userPassword", requireRefreshToken, bodyPasswordValidator, userPassword);
 
-router.patch("/dataUser", requireBodyToken, bodyDataUserValidator, setdataUser);
+router.patch("/dataUser", requireBodyToken, bodyDataUserValidator, setDataUser);
 
 router.patch("/userSallybus", requireBodyToken, setUserSyllabus);
 
