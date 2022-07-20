@@ -29,7 +29,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) =>{
     try {
         const {email, password} = req.body;
-
+        
         const user = await User.findOne({ email, "status": true });
             if (!user) 
             return res.status(400).json({ error: "Su email no se encuentra registrado" });
@@ -76,7 +76,7 @@ export const userPassword = async (req, res) => {
     }
 };
 
-export const getdataUser = async (req, res) =>{
+export const getDataUser = async (req, res) =>{
     try {
         const user = await User.findById({"_id": req.id, "status": true}, {"names":1, "surname":1, "birthDate": 1, "syllabus": 1});
         return res.status(201).json(user);

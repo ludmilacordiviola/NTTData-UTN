@@ -98,7 +98,7 @@ http://localhost:5000/api/v1/auth/getDataUser
 #### GET
 
 ```
-http://localhost:5000/api/v1/auth/userSallybus
+http://localhost:5000/api/v1/auth/getUserSallybus
 ```
 
 #### JSON
@@ -116,7 +116,7 @@ http://localhost:5000/api/v1/auth/userSallybus
 #### GET
 
 ```
-http://localhost:5000/api/v1/auth/userEmail
+http://localhost:5000/api/v1/auth/getUserEmail
 ```
 
 #### JSON
@@ -134,7 +134,7 @@ http://localhost:5000/api/v1/auth/userEmail
 #### GET
 
 ```
-http://localhost:5000/api/v1/auth/logout
+http://localhost:5000/api/v1/auth/getLogout
 ```
 
 ## **USER EMAIL**

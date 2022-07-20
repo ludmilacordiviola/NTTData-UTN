@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
-import postLoginUser from "../utils/userPost";
+import { getDataUser, getLogaut } from "../utils/userGet"
 
 export default function SignIn() {
 
@@ -13,7 +13,9 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
 
   const onClickSignIn = () => {
-    console.log(postLoginUser(email, password));
+    getLogaut();
+    console.log("------------")
+    ///getDataUser({"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDVjODRiMjdmODlhZDBmOGE1NDI5YyIsImlhdCI6MTY1ODI0MTM1OCwiZXhwIjoxNjU4MjQyMjU4fQ.WUx_zhIsoUkins24skEW-60vl6-dnaTg38vCqAHFHE8"});
   }
 
   return (
