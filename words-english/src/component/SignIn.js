@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import { getDataUser, getLogaut } from "../utils/userGet"
+import { axios } from "axios";
 
 export default function SignIn() {
 
@@ -67,7 +68,7 @@ export default function SignIn() {
             >
               <Grid item xs={4}>
                 <TextField
-                  value={email}
+                  value={data.email}
                   onChange= {handleChange}
                   //onChange={(e) => setEmail(e.target.value)}
                   label="Email"
@@ -77,7 +78,7 @@ export default function SignIn() {
               </Grid>
               <Grid item xs={4}>
                 <TextField
-                  value={password}
+                  value={data.password}
                   onChange= {handleChange}
                   //onChange={(e) => setPassword(e.target.value)}
                   label="Password"
