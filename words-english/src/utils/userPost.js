@@ -5,7 +5,6 @@
 
 /* import { axios } from "axios";
 
-
 export async function postregister(token) {
     return await axios.post(
         "http://localhost:5000/api/v1/auth/register",
@@ -26,8 +25,8 @@ export async function postregister(token) {
       .catch(function (error) {
         console.log(error);
       });
-  } */
-
+  } 
+  */
 /*     const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:5000/api/users/register',{

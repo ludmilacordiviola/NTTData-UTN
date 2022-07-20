@@ -7,6 +7,7 @@ import {
   Typography
 } from "@mui/material";
 import { useState } from "react";
+import { axios } from "axios";
 
 export default function SignUp() {
   const [userInfo, setUserInfo] = useState({
@@ -14,12 +15,12 @@ export default function SignUp() {
     lastName: "",
     birthday: (new Date().getFullYear()+"-"+(("0" + (new Date().getMonth() + 1)).slice(-2))+"-"+new Date().getDate()),
     email: "",
-    password: "",
+    password: ""
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target.value;
-    setUserInfo({ ...userInfo, [event.target.name]: value });
+    setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
+
   };
 
   const handleSubmit = (event) => {
@@ -88,6 +89,10 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                variant="filled"
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -101,16 +106,26 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
+                variant="filled"
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </Grid>
           </Grid>
             <TextField
               value={userInfo.birthday}
               onChange={handleChange}
+              label="Birthday"
               margin="normal"
+              name="birthday"
               required
               fullWidth
               type="date"
+              variant="filled"
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
             <TextField
               defaultValue={userInfo.email}
@@ -122,6 +137,10 @@ export default function SignUp() {
               name="email"
               autoComplete="email"
               autoFocus
+              variant="filled"
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
             <TextField
               value={userInfo.password}
@@ -132,7 +151,12 @@ export default function SignUp() {
               name="password"
               label="Password"
               type="password"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              autoFocus
               autoComplete="current-password"
+              variant="filled"
             />
             <Button
               type="submit"
