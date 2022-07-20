@@ -18,8 +18,24 @@ export default function SignUp() {
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setUserInfo({ ...userInfo, [name]: value });
+    const { name, value } = event.target.value;
+    setUserInfo({ ...userInfo, [event.target.name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const userData = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      birthday: userInfo.birthday,
+      email: userInfo.email,
+      password: userInfo.password
+    };
+    axios.post("http://localhost:5000/api/users/register", userData)
+    .then((response) => {
+      console.log(response.status);
+      console.log(response.userInfo.token);
+    });
   };
 
   const onClickSignUp = () => {
@@ -55,39 +71,39 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  value={userInfo.firstName}
-                  onChange={handleChange}
-                  margin="normal"
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  value={userInfo.lastName}
-                  onChange={handleChange}
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                value={userInfo.firstName}
+                onChange={handleChange}
+                margin="normal"
+                autoComplete="given-name"
+                name="firstName"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+              />
             </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                value={userInfo.lastName}
+                onChange={handleChange}
+                margin="normal"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="family-name"
+              />
+            </Grid>
+          </Grid>
             <TextField
               value={userInfo.birthday}
               onChange={handleChange}
