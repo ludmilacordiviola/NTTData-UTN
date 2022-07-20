@@ -8,12 +8,16 @@ import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Box, Grid } from "@mui/material";
 import sound from "../utils/sound";
 
-export default function ModalListening({title, playSound, options}) {
+export default function ModalListening({ title, playSound, options }) {
+
+  const onClickOption = (option) => {
+    ///option === question
+  };
 
   return (
     <Dialog open>
       <Box sx={{ p: 2 }}>
-        <DialogTitle>${title}</DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Grid
@@ -23,8 +27,12 @@ export default function ModalListening({title, playSound, options}) {
               alignItems="center"
               gap={2}
             >
-              <Button variant="contained" startIcon={<VolumeUpIcon />} onClick={() => sound(playSound)}>
-                ${playSound}
+              <Button
+                variant="contained"
+                startIcon={<VolumeUpIcon />}
+                onClick={() => sound(playSound)}
+              >
+                {playSound}
               </Button>
             </Grid>
           </DialogContentText>
@@ -37,8 +45,8 @@ export default function ModalListening({title, playSound, options}) {
             alignItems="center"
             gap={2}
           >
-            ${options.map(function(option){
-              return <Button variant="contained">${option}</Button>
+            {options.map(function (option) {
+              return <Button variant="contained" onClick={onClickOption(option)}>{option}</Button>;
             })}
           </Grid>
         </DialogActions>

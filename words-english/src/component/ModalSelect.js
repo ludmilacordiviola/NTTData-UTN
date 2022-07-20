@@ -6,11 +6,17 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { Box, Grid } from "@mui/material";
 
-export default function ModalSelect({title, options}) {
+export default function ModalSelect({ title, question, options }) {
+
+
+  const onClickOption = (option) => {
+    ///option === question
+  };
+
   return (
     <Dialog open>
       <Box sx={{ p: 2 }}>
-        <DialogTitle>Title</DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Grid
@@ -20,7 +26,7 @@ export default function ModalSelect({title, options}) {
               alignItems="center"
               gap={2}
             >
-              ${title}
+              {question}
             </Grid>
           </DialogContentText>
         </DialogContent>
@@ -32,8 +38,12 @@ export default function ModalSelect({title, options}) {
             alignItems="center"
             gap={2}
           >
-            ${options.map(function(option){
-              return <Button variant="contained">${option}</Button>
+            {options.map(function (option) {
+              return (
+                <Button variant="contained" onClick={onClickOption(option)}>
+                  {option}
+                </Button>
+              );
             })}
           </Grid>
         </DialogActions>

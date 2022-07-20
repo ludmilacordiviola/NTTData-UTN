@@ -9,12 +9,20 @@ import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import sound from "../utils/sound";
+import { useState } from "react";
 
 export default function ModalWrite({title, playSound}) {
+  const [text, setText] = useState("");
+
+  const onClickSend = () =>{
+    if(text === playSound) return "Bee";
+    setText("");
+  }
+
   return (
     <Dialog open>
       <Box sx={{ p: 2 }}>
-        <DialogTitle>${title}</DialogTitle>
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Grid
@@ -25,7 +33,7 @@ export default function ModalWrite({title, playSound}) {
               gap={2}
             >
               <Button variant="contained" startIcon={<VolumeUpIcon />} onClick={() => sound(playSound)}>
-                ${playSound}
+                {playSound}
               </Button>
             </Grid>
           </DialogContentText>
@@ -39,13 +47,14 @@ export default function ModalWrite({title, playSound}) {
             gap={4}
           >
             <TextField
+              value={text}
               autoFocus
               margin="dense"
               label="Text"
               type="Text"
               variant="standard"
             />
-            <Button variant="contained" endIcon={<SendIcon />}>
+            <Button variant="contained" endIcon={<SendIcon />} onClick={onClickSend}>
               Send
             </Button>
           </Grid>
