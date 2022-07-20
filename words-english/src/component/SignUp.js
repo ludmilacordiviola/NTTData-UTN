@@ -12,7 +12,7 @@ export default function SignUp() {
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
-    birthday: "2022-05-24",
+    birthday: (new Date().getFullYear()+"-"+(("0" + (new Date().getMonth() + 1)).slice(-2))+"-"+new Date().getDate()),
     email: "",
     password: "",
   });
@@ -110,12 +110,10 @@ export default function SignUp() {
               margin="normal"
               required
               fullWidth
-              label="Birthday"
               type="date"
-              defaultValue="2022-05-24"
             />
             <TextField
-              value={userInfo.email}
+              defaultValue={userInfo.email}
               onChange={handleChange}
               margin="normal"
               required

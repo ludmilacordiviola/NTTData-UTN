@@ -3,14 +3,14 @@ import {
     login, 
     register, 
     refreshToken, 
-    logout, 
+    getLogout, 
     getDataUser, 
-    setDataUser,
-    setUserSyllabus,
+    patchDataUser,
+    patchSyllabus,
     getUserSyllabus,
     getUserEmail,
-    setUserEmail,
-    userPassword
+    patchEmail,
+    patchPassword
 } from "../controllers/auth.contoller.js";
 import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
 import { requireToken, requireBodyToken } from "../middlewares/requireToken.js";
@@ -37,20 +37,20 @@ router.post("/login",
 
 router.post("/refresh", requireRefreshToken, refreshToken);
 
-router.get("/dataUser",requireToken, getDataUser);
+router.get("/getDataUser",requireToken, getDataUser);
 
-router.get("/userSallybus", requireBodyToken, getUserSyllabus);
+router.get("/getUserSallybus", requireBodyToken, getUserSyllabus);
 
-router.get("/userEmail", requireBodyToken, getUserEmail);
+router.get("/getUserEmail", requireBodyToken, getUserEmail);
 
-router.get("/logout", logout);
+router.get("/getLogout", getLogout);
 
-router.patch("/userEmail", requireRefreshToken, bodyEmailValidator, setUserEmail);
+router.patch("/patchEmail", requireRefreshToken, bodyEmailValidator, patchEmail);
 
-router.patch("/userPassword", requireRefreshToken, bodyPasswordValidator, userPassword);
+router.patch("/patchPassword", requireRefreshToken, bodyPasswordValidator, patchPassword);
 
-router.patch("/dataUser", requireBodyToken, bodyDataUserValidator, setDataUser);
+router.patch("/patchDataUser", requireBodyToken, bodyDataUserValidator, patchDataUser);
 
-router.patch("/userSallybus", requireBodyToken, setUserSyllabus);
+router.patch("/patchSallybus", requireBodyToken, patchSyllabus);
 
 export default router;
