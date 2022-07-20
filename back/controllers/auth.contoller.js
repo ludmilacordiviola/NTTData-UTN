@@ -48,34 +48,6 @@ export const login = async (req, res) =>{
     }
 }
 
-export const setUserEmail = async (req, res) => {
-    try {
-        const {email} = req.body;
-        let user = await User.findOne({ email });
-            if (user) return res.status(400).json({ error: "Su email ya se encuentra registrado" });
-        
-        user = await User.updateOne({_id: req.id}, 
-                {email});
-        console.log(email)
-        return res.status(201).json({ numberModified : user.modifiedCount});
-    } catch (error) {
-        return res.status(500).json({ error: "Falla la aplicacion en user email" });
-    }
-};
-
-export const userPassword = async (req, res) => {
-    try {
-        const {password} = req.body;
-
-        const user = await User.findOneAndUpdate({_id: req.id}, 
-                {password});
-
-        return res.status(201).json({ numberModified : user.modifiedCount});
-    } catch (error) {
-        return res.status(500).json({ error: "Falla la aplicacion en user password" });
-    }
-};
-
 export const getDataUser = async (req, res) =>{
     try {
         const user = await User.findById({"_id": req.id, "status": true}, {"names":1, "surname":1, "birthDate": 1, "syllabus": 1});
@@ -103,7 +75,40 @@ export const getUserEmail = async (req, res) =>{
     }
 }
 
-export const setdataUser = async (req, res, next) =>{
+export const getLogout = (req, res) => {
+    res.clearCookie("refreshToken");
+    res.json({ ok: true });
+};
+
+export const patchEmail = async (req, res) => {
+    try {
+        const {email} = req.body;
+        let user = await User.findOne({ email });
+            if (user) return res.status(400).json({ error: "Su email ya se encuentra registrado" });
+        
+        user = await User.updateOne({_id: req.id}, 
+                {email});
+        console.log(email)
+        return res.status(201).json({ numberModified : user.modifiedCount});
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en user email" });
+    }
+};
+
+export const patchPassword = async (req, res) => {
+    try {
+        const {password} = req.body;
+
+        const user = await User.findOneAndUpdate({_id: req.id}, 
+                {password});
+
+        return res.status(201).json({ numberModified : user.modifiedCount});
+    } catch (error) {
+        return res.status(500).json({ error: "Falla la aplicacion en user password" });
+    }
+};
+
+export const patchDataUser = async (req, res, next) =>{
     try {
         const { names,  surname, birthDate} = req.body;
         console.log(req.id)
@@ -115,7 +120,7 @@ export const setdataUser = async (req, res, next) =>{
     }
 }
 
-export const setUserSyllabus = async (req, res) =>{
+export const patchSyllabus = async (req, res) =>{
     try {
         const { syllabus} = req.body;
 
@@ -139,9 +144,4 @@ export const refreshToken = (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: "Falla de la aplicacion en el refres token" });
     }
-};
-
-export const logout = (req, res) => {
-    res.clearCookie("refreshToken");
-    res.json({ ok: true });
 };

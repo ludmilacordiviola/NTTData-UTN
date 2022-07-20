@@ -3,14 +3,14 @@ import {
     login, 
     register, 
     refreshToken, 
-    logout, 
+    getLogout, 
     getDataUser, 
-    setdataUser,
-    setUserSyllabus,
+    patchDataUser,
+    patchSyllabus,
     getUserSyllabus,
     getUserEmail,
-    setUserEmail,
-    userPassword
+    patchEmail,
+    patchPassword
 } from "../controllers/auth.contoller.js";
 import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
 import { requireToken, requireBodyToken } from "../middlewares/requireToken.js";
@@ -43,14 +43,14 @@ router.get("/getUserSallybus", requireBodyToken, getUserSyllabus);
 
 router.get("/getUserEmail", requireBodyToken, getUserEmail);
 
-router.get("/getLogout", logout);
+router.get("/getLogout", getLogout);
 
-router.patch("/userEmail", requireRefreshToken, bodyEmailValidator, setUserEmail);
+router.patch("/patchEmail", requireRefreshToken, bodyEmailValidator, patchEmail);
 
-router.patch("/userPassword", requireRefreshToken, bodyPasswordValidator, userPassword);
+router.patch("/patchPassword", requireRefreshToken, bodyPasswordValidator, patchPassword);
 
-router.patch("/dataUser", requireBodyToken, bodyDataUserValidator, setdataUser);
+router.patch("/patchDataUser", requireBodyToken, bodyDataUserValidator, patchDataUser);
 
-router.patch("/userSallybus", requireBodyToken, setUserSyllabus);
+router.patch("/patchSallybus", requireBodyToken, patchSyllabus);
 
 export default router;

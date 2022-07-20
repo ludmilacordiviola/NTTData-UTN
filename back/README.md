@@ -144,7 +144,7 @@ http://localhost:5000/api/v1/auth/getLogout
 #### PATCH
 
 ```
-http://localhost:5000/api/v1/auth/userEmail
+http://localhost:5000/api/v1/auth/patchEmail
 ```
 
 #### JSON
@@ -163,7 +163,7 @@ http://localhost:5000/api/v1/auth/userEmail
 #### PATCH
 
 ```
-http://localhost:5000/api/v1/auth/userPassword
+http://localhost:5000/api/v1/auth/patchPassword
 ```
 
 #### JSON
@@ -182,7 +182,7 @@ http://localhost:5000/api/v1/auth/userPassword
 #### PATCH
 
 ```
-http://localhost:5000/api/v1/auth/dataUser
+http://localhost:5000/api/v1/auth/patchDataUser
 ```
 
 #### JSON
@@ -203,7 +203,7 @@ http://localhost:5000/api/v1/auth/dataUser
 #### PATCH
 
 ```
-http://localhost:5000/api/v1/auth/userSallybus
+http://localhost:5000/api/v1/auth/patchSallybus
 ```
 
 #### JSON

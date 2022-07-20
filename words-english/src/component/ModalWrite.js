@@ -8,12 +8,13 @@ import SendIcon from "@mui/icons-material/Send";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
+import sound from "../utils/sound";
 
-export default function ModalWrite() {
+export default function ModalWrite({title, playSound}) {
   return (
     <Dialog open>
       <Box sx={{ p: 2 }}>
-        <DialogTitle>Title</DialogTitle>
+        <DialogTitle>${title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Grid
@@ -23,8 +24,8 @@ export default function ModalWrite() {
               alignItems="center"
               gap={2}
             >
-              <Button variant="contained" startIcon={<VolumeUpIcon />}>
-                Play sound
+              <Button variant="contained" startIcon={<VolumeUpIcon />} onClick={() => sound(playSound)}>
+                ${playSound}
               </Button>
             </Grid>
           </DialogContentText>
