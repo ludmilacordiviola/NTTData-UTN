@@ -11,18 +11,24 @@ import { Box } from "@mui/system";
 import sound from "../utils/sound";
 import { useState } from "react";
 
-export default function ModalWrite({title, playSound}) {
-  const [text, setText] = useState("");
+export default function ModalWrite({ id, closeFn = () => null, open = false }) {
+  
+
+  const [write, setWrite] = useState({
+    title: "PEpe",
+    playSound: "Play",
+    text: ""
+  })
 
   const onClickSend = () =>{
     if(text === playSound) return "Bee";
-    setText("");
+    closeFn
   }
 
   return (
-    <Dialog open>
+    <Dialog open={open}>
       <Box sx={{ p: 2 }}>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>{write.title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Grid
@@ -33,7 +39,7 @@ export default function ModalWrite({title, playSound}) {
               gap={2}
             >
               <Button variant="contained" startIcon={<VolumeUpIcon />} onClick={() => sound(playSound)}>
-                {playSound}
+                {write.playSoundplaySound}
               </Button>
             </Grid>
           </DialogContentText>
@@ -47,7 +53,7 @@ export default function ModalWrite({title, playSound}) {
             gap={4}
           >
             <TextField
-              value={text}
+              value={write.text}
               autoFocus
               margin="dense"
               label="Text"

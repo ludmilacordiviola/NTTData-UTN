@@ -3,27 +3,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import ModalListening from "./ModalListening";
+import { useState } from "react";
 import ModalSelect from "./ModalSelect";
 
-export default function TopicsApp({ img, title, description }) {
-  const onClickStart = () => {
-    //fetch a para traer todo el desarrollo de los temas
-    //Luego ir a cada uno de los 4 componentes
+export default function TopicsApp({ img, title, description, id }) {
+  const [modalOpen, setModal] = useState(false)
+
+  const closeFn = () => (setModal(!modalOpen));
+
+  const onClickStart = (event) => {
+    setModal(!modalOpen)
     return (
-      <>
-        <ModalListening
-          title="Titulo"
-          playSound="PlaySoun"
-          options={["option1", "option4", "option3", "option4"]}
-        ></ModalListening>
-        <ModalSelect
-          title="Titulo"
-          question="Question"
-          options={["option1", "option4", "option3", "option4"]}
-        ></ModalSelect>
-      </>
-    );
+      <ModalSelect
+        id
+        closeFn
+        open={modalOpen}
+      />
+    )
   };
 
   return (

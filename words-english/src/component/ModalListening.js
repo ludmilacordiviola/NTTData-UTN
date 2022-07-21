@@ -9,19 +9,26 @@ import { Box, Grid } from "@mui/material";
 import sound from "../utils/Sound";
 import { useState } from "react";
 
-export default function ModalListening({ title, playSound, options }) {
+export default function ModalListening({ id, closeFn = () => null, open = false }) {
   const [error, setError] = useState(false);
+
+  const [listening, setListening] = useState({
+    title: "PEpe",
+    playSound: "Play",
+    options: ["grey", "pink", "red"]
+  })
 
   const onClickOption = (option) => {
     if(option !== playSound){
       setError(!error)
     }
+    closeFn
   };
 
   return (
-    <Dialog open>
+    <Dialog open={open}>
       <Box sx={{ p: 2 }}>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>{listening.title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Grid
@@ -34,9 +41,9 @@ export default function ModalListening({ title, playSound, options }) {
               <Button
                 variant="contained"
                 startIcon={<VolumeUpIcon />}
-                onClick={() => sound(playSound)}
+                onClick={() => sound(listening.playSound)}
               >
-                {playSound}
+                {listening.playSound}
               </Button>
             </Grid>
           </DialogContentText>
@@ -49,7 +56,7 @@ export default function ModalListening({ title, playSound, options }) {
             alignItems="center"
             gap={2}
           >
-            {options.map(option => {
+            {listening.options.map(option => {
               return <Button variant="contained" onClick={onClickOption(option)}>{option}</Button>;
             })}
           </Grid>

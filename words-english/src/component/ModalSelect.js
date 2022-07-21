@@ -7,19 +7,26 @@ import Button from "@mui/material/Button";
 import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 
-export default function ModalSelect({ title, question, options }) {
+export default function ModalSelect({ id, closeFn = () => null, open = false }) {
   const [error, setError] = useState(false);
 
+  const [select, setSelect] = useState({
+    title: "PEpe",
+    question: "Play?",
+    options: ["grey", "pink", "red"]
+  })
+
   const onClickOption = (option) => {
-    if(option !== question){
+    if(option !== select.question){
       setError(!error)
     }
+    closeFn
   };
   
   return (
-    <Dialog open>
+    <Dialog open={open}>
       <Box sx={{ p: 2 }}>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>{select.title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Grid
@@ -29,7 +36,7 @@ export default function ModalSelect({ title, question, options }) {
               alignItems="center"
               gap={2}
             >
-              {question}
+              {select.question}
             </Grid>
           </DialogContentText>
         </DialogContent>
@@ -41,7 +48,7 @@ export default function ModalSelect({ title, question, options }) {
             alignItems="center"
             gap={2}
           >
-            {options.map(function (option) {
+            {select.options.map(function (option) {
               return (
                 <Button variant="contained" onClick={onClickOption(option)}>
                   {option}
