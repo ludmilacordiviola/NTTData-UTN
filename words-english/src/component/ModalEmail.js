@@ -44,7 +44,7 @@ export default function ModalEmail() {
             gap={4}
           >
             <TextField
-              value={text}
+              value={email}
               onChange={handleChange}
               autoFocus
               margin="dense"

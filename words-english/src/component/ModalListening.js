@@ -6,12 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Box, Grid } from "@mui/material";
-import sound from "../utils/sound";
+import sound from "../utils/Sound";
+import { useState } from "react";
 
 export default function ModalListening({ title, playSound, options }) {
+  const [error, setError] = useState(false);
 
   const onClickOption = (option) => {
-    ///option === question
+    if(option !== playSound){
+      setError(!error)
+    }
   };
 
   return (
@@ -45,7 +49,7 @@ export default function ModalListening({ title, playSound, options }) {
             alignItems="center"
             gap={2}
           >
-            {options.map(function (option) {
+            {options.map(option => {
               return <Button variant="contained" onClick={onClickOption(option)}>{option}</Button>;
             })}
           </Grid>

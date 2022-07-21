@@ -5,14 +5,17 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { Box, Grid } from "@mui/material";
+import { useState } from "react";
 
 export default function ModalSelect({ title, question, options }) {
-
+  const [error, setError] = useState(false);
 
   const onClickOption = (option) => {
-    ///option === question
+    if(option !== question){
+      setError(!error)
+    }
   };
-
+  
   return (
     <Dialog open>
       <Box sx={{ p: 2 }}>
