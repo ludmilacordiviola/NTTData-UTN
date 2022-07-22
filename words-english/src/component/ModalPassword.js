@@ -9,11 +9,12 @@ import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 
-export default function ModalPassword(id, closeFn = () => null, open = false) {
+export default function ModalPassword({id, closeFn = () => null, open = false}) {
+  console.log(open);
   const [password, setPassword] = useState("");
 
   const handleChange = (event) => {
-    setPassword((password = event.target.value));
+    setPassword(event.target.value);
   };
 
   const onClickSend = () => closeFn();

@@ -9,25 +9,30 @@ import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 
-export default function ModalDataUser(
+export default function ModalDataUser({
   id,
   closeFn = () => null,
   open = false,
-) {
+}) {
   const [dataUser, setDataUser] = useState({
-    id: {id},
+    id: { id },
     firstName: "",
     lastName: "",
-    birthday: (new Date().getFullYear()+"-"+(("0" + (new Date().getMonth() + 1)).slice(-2))+"-"+new Date().getDate())
+    birthday:
+      new Date().getFullYear() +
+      "-" +
+      ("0" + (new Date().getMonth() + 1)).slice(-2) +
+      "-" +
+      new Date().getDate(),
   });
 
   const handleChange = (event) => {
-    setDataUser({...dataUser, [event.target.name]: event.target.value});
+    setDataUser({ ...dataUser, [event.target.name]: event.target.value });
   };
 
-  const onClickSend = () =>{
+  const onClickSend = () => {
     closeFn();
-  }
+  };
 
   return (
     <Dialog onClose={onClickSend} open={open}>
@@ -41,8 +46,7 @@ export default function ModalDataUser(
               justifyContent="center"
               alignItems="center"
               gap={2}
-            >
-            </Grid>
+            ></Grid>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -73,7 +77,7 @@ export default function ModalDataUser(
               name="lastName"
               variant="standard"
             />
-             <TextField
+            <TextField
               value={dataUser.birthday}
               onChange={handleChange}
               label="Birthday"
@@ -87,7 +91,11 @@ export default function ModalDataUser(
                 shrink: true,
               }}
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={() => onClickSend()}>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={() => onClickSend()}
+            >
               Send
             </Button>
           </Grid>

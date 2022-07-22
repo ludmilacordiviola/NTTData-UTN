@@ -9,11 +9,11 @@ import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 
-export default function ModalEmail(id, closeFn = () => null, open = false) {
+export default function ModalEmail({ id, closeFn = () => null, open = false }) {
   const [email, setEmail] = useState("");
 
   const handleChange = (event) => {
-    setEmail((email = event.target.value));
+    setEmail(event.target.value);
   };
 
   const onClickSend = () => closeFn();

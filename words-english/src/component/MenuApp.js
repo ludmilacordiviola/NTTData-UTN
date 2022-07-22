@@ -11,9 +11,18 @@ import Logout from "@mui/icons-material/Logout";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Settings from "@mui/icons-material/Settings";
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
+import ModalDataUser from "../component/ModalDataUser";
+import ModalEmail from "../component/ModalEmail";
+import ModalPassword from "../component/ModalPassword";
 
 export default function MenuApp() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [modal, setModal] = useState({
+    DataUser: false,
+    Email: false,
+    Password: false,
+  });
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,6 +30,30 @@ export default function MenuApp() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const onClickOpenModal = (text) => {
+    switch (text) {
+      case "DataUser":
+        setModal({ ...modal, DataUser: true });
+        break;
+      case "Email":
+        setModal({ ...modal, Email: true });
+        break;
+      case "Password":
+        setModal({ ...modal, Password: true });
+        break;
+      default:
+        setModal(modal);
+    }
+  };
+
+  const closeFn = () => {
+    setModal({
+      DataUser: false,
+      Email: false,
+      Password: false,
+    });
   };
 
   return (
@@ -46,24 +79,60 @@ export default function MenuApp() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  onClickOpenModal("DataUser");
+                }}
+              >
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>
                 Edit user data
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              {modal.DataUser && (
+                <ModalDataUser
+                  id={"dsasdsad"}
+                  closeFn={closeFn}
+                  open={modal.DataUser}
+                />
+              )}
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  onClickOpenModal("Email");
+                }}
+              >
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>
                 Edit email
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              {modal.Email && (
+                <ModalEmail
+                  id={"dsasdsad"}
+                  closeFn={closeFn}
+                  open={modal.modalEmail}
+                />
+              )}
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  onClickOpenModal("Password");
+                }}
+              >
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>
                 Edit Password
               </MenuItem>
+              {modal.Password && (
+                <ModalPassword
+                  id={"dsasdsad"}
+                  closeFn={closeFn}
+                  open={modal.modalPassword}
+                />
+              )}
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
