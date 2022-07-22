@@ -16,15 +16,15 @@ export default function TopicsApp({ img, title, description, id }) {
   });
 
   const closeFn = () => {
-    switch (stateModal) {
+    switch (true) {
       case stateModal.Select:
-        console.log("sss");
+        setStateModal({ ...stateModal, Select: false, Listening: true });
         break;
       case stateModal.Listening:
-        console.log("lllll");
+        setStateModal({ ...stateModal, Listening: false, Write: true });
         break;
       case stateModal.Write:
-        console.log("wwwww");
+        setStateModal({ ...stateModal, Write: false });
         break;
       default:
         setStateModal({
