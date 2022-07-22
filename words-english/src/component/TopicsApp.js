@@ -11,13 +11,14 @@ export default function TopicsApp({ img, title, description, id }) {
 
   const closeFn = () => (setModal(!modalOpen));
 
-  const onClickStart = (event) => {
+  const onClickStart = () => {
+    console.log(22)
     setModal(!modalOpen)
     return (
       <ModalSelect
         id
-        closeFn
-        open={modalOpen}
+        closeFn = {closeFn}
+        open = {modalOpen}
       />
     )
   };

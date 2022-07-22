@@ -20,7 +20,7 @@ export default function ModalSelect({ id, closeFn = () => null, open = false }) 
     if(option !== select.question){
       setError(!error)
     }
-    closeFn
+    closeFn();
   };
   
   return (
