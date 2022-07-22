@@ -9,8 +9,13 @@ import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 
-export default function ModalDataUser() {
+export default function ModalDataUser(
+  id,
+  closeFn = () => null,
+  open = false,
+) {
   const [dataUser, setDataUser] = useState({
+    id: {id},
     firstName: "",
     lastName: "",
     birthday: (new Date().getFullYear()+"-"+(("0" + (new Date().getMonth() + 1)).slice(-2))+"-"+new Date().getDate())
@@ -21,10 +26,11 @@ export default function ModalDataUser() {
   };
 
   const onClickSend = () =>{
+    closeFn();
   }
 
   return (
-    <Dialog open>
+    <Dialog onClose={onClickSend} open={open}>
       <Box sx={{ p: 2 }}>
         <DialogTitle>Edit Data User</DialogTitle>
         <DialogContent>
@@ -81,7 +87,7 @@ export default function ModalDataUser() {
                 shrink: true,
               }}
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={onClickSend}>
+            <Button variant="contained" endIcon={<SendIcon />} onClick={() => onClickSend()}>
               Send
             </Button>
           </Grid>

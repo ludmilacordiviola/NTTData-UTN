@@ -9,18 +9,17 @@ import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 
-export default function ModalEmail() {
+export default function ModalEmail(id, closeFn = () => null, open = false) {
   const [email, setEmail] = useState("");
 
   const handleChange = (event) => {
-    setEmail(email=event.target.value);
+    setEmail((email = event.target.value));
   };
 
-  const onClickSend = () =>{
-  }
+  const onClickSend = () => closeFn();
 
   return (
-    <Dialog open>
+    <Dialog onClose={onClickSend} open={open}>
       <Box sx={{ p: 2 }}>
         <DialogTitle>Edit Email</DialogTitle>
         <DialogContent>
@@ -31,8 +30,7 @@ export default function ModalEmail() {
               justifyContent="center"
               alignItems="center"
               gap={2}
-            >
-            </Grid>
+            ></Grid>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -53,7 +51,11 @@ export default function ModalEmail() {
               name="email"
               variant="standard"
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={onClickSend}>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={() => onClickSend()}
+            >
               Send
             </Button>
           </Grid>

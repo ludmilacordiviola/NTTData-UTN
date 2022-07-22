@@ -8,25 +8,24 @@ import SendIcon from "@mui/icons-material/Send";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import sound from "../utils/sound";
 import { useState } from "react";
 
 export default function ModalWrite({ id, closeFn = () => null, open = false }) {
-  
-
   const [write, setWrite] = useState({
     title: "PEpe",
     playSound: "Play",
-    text: ""
-  })
+    text: "",
+  });
 
-  const onClickSend = () =>{
-    if(text === playSound) return "Bee";
-    closeFn
-  }
+  const sound = ()=>{speechSynthesis.speak(new SpeechSynthesisUtterance(write.playSound))}
+
+  const onClickSend = () => {
+    if (write.text === write.playSound) return "Bee";
+    closeFn();
+  };
 
   return (
-    <Dialog open={open}>
+    <Dialog onClose={onClickSend} open={open}>
       <Box sx={{ p: 2 }}>
         <DialogTitle>{write.title}</DialogTitle>
         <DialogContent>
@@ -38,7 +37,11 @@ export default function ModalWrite({ id, closeFn = () => null, open = false }) {
               alignItems="center"
               gap={2}
             >
-              <Button variant="contained" startIcon={<VolumeUpIcon />} onClick={() => sound(playSound)}>
+              <Button
+                variant="contained"
+                startIcon={<VolumeUpIcon />}
+                onClick={() => sound(write.playSound)}
+              >
                 {write.playSoundplaySound}
               </Button>
             </Grid>
@@ -60,7 +63,11 @@ export default function ModalWrite({ id, closeFn = () => null, open = false }) {
               type="Text"
               variant="standard"
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={onClickSend}>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={onClickSend}
+            >
               Send
             </Button>
           </Grid>

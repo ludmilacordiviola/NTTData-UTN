@@ -9,18 +9,17 @@ import { Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 
-export default function ModalPassword() {
+export default function ModalPassword(id, closeFn = () => null, open = false) {
   const [password, setPassword] = useState("");
 
   const handleChange = (event) => {
-    setPassword(password=event.target.value);
+    setPassword((password = event.target.value));
   };
 
-  const onClickSend = () =>{
-  }
+  const onClickSend = () => closeFn();
 
   return (
-    <Dialog open>
+    <Dialog onClose={onClickSend} open={open}>
       <Box sx={{ p: 2 }}>
         <DialogTitle>Edit Password</DialogTitle>
         <DialogContent>
@@ -31,8 +30,7 @@ export default function ModalPassword() {
               justifyContent="center"
               alignItems="center"
               gap={2}
-            >
-            </Grid>
+            ></Grid>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -53,7 +51,11 @@ export default function ModalPassword() {
               name="password"
               variant="standard"
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={onClickSend}>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={() => onClickSend()}
+            >
               Send
             </Button>
           </Grid>

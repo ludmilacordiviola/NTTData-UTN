@@ -6,7 +6,9 @@ import Main from "./routes/Main";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Main></Main>
+  <React.StrictMode>
+    <Main></Main>
+  </React.StrictMode>
 );
 
 /*

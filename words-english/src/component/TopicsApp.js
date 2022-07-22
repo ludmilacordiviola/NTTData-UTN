@@ -3,25 +3,27 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalSelect from "./ModalSelect";
+import ModalWrite from "./ModalWrite";
+import ModalListening from "./ModalListening";
 
 export default function TopicsApp({ img, title, description, id }) {
-  const [modalOpen, setModal] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [stateModal, setStateModal] = useState({
+    modalSelect: false,
+    modalListening: false,
+    modalWrite: false
+  });
 
-  const closeFn = () => (setModal(!modalOpen));
 
-  const onClickStart = () => {
-    console.log(22)
-    setModal(!modalOpen)
-    return (
-      <ModalSelect
-        id
-        closeFn = {closeFn}
-        open = {modalOpen}
-      />
-    )
-  };
+  const closeFn = () => setModalOpen(false);
+
+  const onClickStart = () => setModalOpen(true);
+
+  useEffect(() => {
+    
+  }, [modalOpen]);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -33,10 +35,10 @@ export default function TopicsApp({ img, title, description, id }) {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography component={'p'} variant="h5">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography component={'p'} variant="body2" color="text.secondary">
             {description}
           </Typography>
         </CardContent>
@@ -45,6 +47,7 @@ export default function TopicsApp({ img, title, description, id }) {
         <Button size="small" color="primary" onClick={onClickStart}>
           Start
         </Button>
+        {modalOpen && <ModalListening id closeFn={closeFn} open={modalOpen} />}
       </CardActions>
     </Card>
   );
