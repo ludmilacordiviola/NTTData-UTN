@@ -18,6 +18,12 @@ import ModalPassword from "../component/ModalPassword";
 
 export default function MenuApp() {
   const [anchorEl, setAnchorEl] = useState(null);
+
+ /*  function HamburgerMenu() {
+    const [click, setClick] = useState(false);
+    const handleClick = () => setClick(!click);
+ */
+
   const [modal, setModal] = useState({
     DataUser: false,
     Email: false,
@@ -56,13 +62,17 @@ export default function MenuApp() {
     });
   };
 
+/*    <ItemLink onClick={handleClick} to="/">
+        Home
+      </ItemLink>
+ */
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-              Words English
+              Syllabus
             </Typography>
             <IconButton
               size="large"

@@ -12,8 +12,8 @@ import { useState } from "react";
 
 export default function ModalWrite({ id, closeFn = () => null, open = false }) {
   const [write, setWrite] = useState({
-    title: "PEpe",
-    playSound: "Play",
+    title: "Listen and write/ Escucha y presiona",
+    playSound: "PINK",
     text: "",
   });
 
@@ -23,6 +23,7 @@ export default function ModalWrite({ id, closeFn = () => null, open = false }) {
     if (write.text === write.playSound) return "Bee";
     closeFn();
   };
+  //return BEE?
 
   return (
     <Dialog onClose={onClickSend} open={open}>
@@ -42,7 +43,7 @@ export default function ModalWrite({ id, closeFn = () => null, open = false }) {
                 startIcon={<VolumeUpIcon />}
                 onClick={() => sound(write.playSound)}
               >
-                {write.playSoundplaySound}
+                {write.playSound}
               </Button>
             </Grid>
           </DialogContentText>
@@ -60,7 +61,7 @@ export default function ModalWrite({ id, closeFn = () => null, open = false }) {
               autoFocus
               margin="dense"
               label="Text"
-              type="Text"
+              type="text"
               variant="standard"
             />
             <Button

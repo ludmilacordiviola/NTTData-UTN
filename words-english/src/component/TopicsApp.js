@@ -8,13 +8,17 @@ import ModalSelect from "./ModalSelect";
 import ModalWrite from "./ModalWrite";
 import ModalListening from "./ModalListening";
 
+
 export default function TopicsApp({ img, title, description, id }) {
   const [stateModal, setStateModal] = useState({
     Select: false,
     Listening: false,
     Write: false,
   });
-
+/*
+si hago click en start dentro de la card, debe llevarme a Select, 
+luego a Listening y finalmente a write
+ */
   const closeFn = () => {
     switch (true) {
       case stateModal.Select:
@@ -40,6 +44,7 @@ export default function TopicsApp({ img, title, description, id }) {
     setStateModal({ ...stateModal, Select: true });
   };
 
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -59,8 +64,8 @@ export default function TopicsApp({ img, title, description, id }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={onClickStart}>
-          Start
+        <Button size="small" variant="contained"  onClick={onClickStart}>
+          Start 
         </Button>
         {stateModal.Listening && (
           <ModalListening id closeFn={closeFn} open={stateModal.Listening} />

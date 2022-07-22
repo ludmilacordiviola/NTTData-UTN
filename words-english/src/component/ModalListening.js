@@ -16,9 +16,9 @@ export default function ModalListening({
   const [error, setError] = useState(false);
 
   const [listening, setListening] = useState({
-    title: "PEpe",
-    playSound: "Play",
-    options: ["grey", "pink", "red"],
+    title: "Listen and choose/ Escucha y elije",
+    playSound: "RED",
+    options: ["GREY", "PINK", "RED"],
   });
 
   const sound = ()=>{speechSynthesis.speak(new SpeechSynthesisUtterance(listening.playSound))}

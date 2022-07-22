@@ -15,8 +15,8 @@ export default function ModalSelect({
   const [error, setError] = useState(false);
 
   const [select, setSelect] = useState({
-    title: "PEpe",
-    question: "Play?",
+    title: "Select the correct option/ Selecciona la opcion correcta",
+    question: "GREY",
     options: ["grey", "pink", "red"],
   });
 
